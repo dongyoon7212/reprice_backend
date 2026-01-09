@@ -28,20 +28,16 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
         String providerUserId = defaultOAuth2User.getAttribute("providerUserId");
         String email =  defaultOAuth2User.getAttribute("email");
 
-        System.out.println(provider);
-        System.out.println(providerUserId);
-        System.out.println(email);
-
         Optional<User> foundUser = userRepository.getUserByProviderAndProviderUserId(provider, providerUserId);
 
         if (foundUser.isEmpty()) {
-            response.sendRedirect("http://localhost:5173/auth/signup?provider=" + provider + "&providerUserId=" + providerUserId + "&email=" + email);
+            response.sendRedirect("http://localhost:5173/signup?provider=" + provider + "&providerUserId=" + providerUserId + "&email=" + email);
             return;
         }
 
         String accessToken = jwtUtils.generateToken(foundUser.get().getUserId().toString());
 
-        response.sendRedirect("http://localhost:5173/auth/login/result?accessToken=" + accessToken);
+        response.sendRedirect("http://localhost:5173/login/result?accessToken=" + accessToken);
 
     }
 }

@@ -52,11 +52,11 @@
             provider = #{provider} and provider_user_id = #{providerUserId};
     </select>
 
-    <insert id="addUser" useGeneratedKeys="true" >
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="userId" >
         insert into
             user_tb
         values
-            (0, #{email}, null, #{displayName}, "ROLE_USER", "ACTIVE", now(), now());
+            (0, #{email}, #{displayName}, #{provider}, #{providerUserId}, "ROLE_USER", "ACTIVE", now(), now());
     </insert>
 
     <update id="updateUser" >

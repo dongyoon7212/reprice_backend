@@ -33,7 +33,7 @@ public class OAuth2PrincipalService extends DefaultOAuth2UserService {
                 break;
             case "naver":
                 Map<String, Object> response = (Map<String, Object>) attributes.get("response");
-                providerUserId = response.get("providerUserId").toString();
+                providerUserId = response.get("id").toString();
                 email = response.get("email").toString();
                 break;
         }
