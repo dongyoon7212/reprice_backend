@@ -15,5 +15,6 @@ public class ProductImage {
     private Integer productImageId;
     private Integer productId;
     private String imageUrl;
+    private Integer thumbnail;
     private LocalDateTime createDt;
 }

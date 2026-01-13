@@ -16,11 +16,11 @@ public class Product {
     private Integer sellerId;
     private String title;
     private String description;
-    private Integer categoryId;
+    private String category;
     private Integer price;
-    private String conditionGrade;
-    private String tradeType;
-    private String status;
+    private String conditionGrade; //NEW/GOOD/USED/BREAK
+    private String tradeType; //MEETUP/DELIVERY/BOTH
+    private String status; //FOR_SALE/RESERVED/SOLD/DELETED
     private LocalDateTime createDt;
     private LocalDateTime updateDt;
 }

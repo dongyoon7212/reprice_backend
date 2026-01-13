@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.reprice_backend.mapper.ProductImageMapper">
+
+    <resultMap id="ProductImageResultMap" type="com.example.reprice_backend.entity.ProductImage">
+        <id property="productImageId" column="product_image_id" />
+        <result property="productId" column="product_id" />
+        <result property="imageUrl" column="image_url" />
+        <result property="thumbnail" column="thumbnail" />
+        <result property="createDt" column="create_dt" />
+    </resultMap>
+
+    <insert id="addProductImageList">
+        insert into
+            product_image_tb
+        values
+            <foreach collection="list" item="item" separator=",">
+                (
+                    0,
+                    #{item.productId},
+                    #{item.imageUrl},
+                    #{item.thumbnail},
+                    now()
+                )
+            </foreach>
+    </insert>
+
+</mapper>
