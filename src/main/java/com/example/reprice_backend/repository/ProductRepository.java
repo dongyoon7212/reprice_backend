@@ -1,10 +1,13 @@
 package com.example.reprice_backend.repository;
 
+import com.example.reprice_backend.dto.ProductListDto;
 import com.example.reprice_backend.entity.Product;
 import com.example.reprice_backend.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,5 +26,9 @@ public class ProductRepository {
             return Optional.empty();
         }
         return Optional.of(product);
+    }
+
+    public List<ProductListDto> getProductList(int limit, LocalDateTime cursorCreateDt, Integer cursorProductId, String status, String keyword) {
+        return productMapper.getProductList(limit, cursorCreateDt,  cursorProductId, status, keyword);
     }
 }

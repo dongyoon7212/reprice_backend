@@ -3,11 +3,11 @@ package com.example.reprice_backend.controller;
 import com.example.reprice_backend.dto.AddProductReqDto;
 import com.example.reprice_backend.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/product")
@@ -18,6 +18,17 @@ public class ProductController {
     @PostMapping("/add")
     public ResponseEntity<?> addProduct(@RequestBody AddProductReqDto addProductReqDto) {
         return ResponseEntity.ok(productService.addProduct(addProductReqDto));
+    }
+
+    @GetMapping("/get/infinite")
+    public ResponseEntity<?> getProductList(
+            @RequestParam(defaultValue = "9") int limit,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime cursorCreateDt,
+            @RequestParam(required = false) Integer cursorProductId,
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) String status
+    ) {
+       return ResponseEntity.ok(productService.getProductList(limit, cursorCreateDt, cursorProductId, keyword, status));
     }
 
 }
