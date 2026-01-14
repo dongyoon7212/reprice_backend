@@ -12,6 +12,19 @@
         <result property="createDt" column="create_dt" />
     </resultMap>
 
+    <select id="getProductImageListByProductId" resultMap="ProductImageResultMap" resultType="list">
+        SELECT
+            *
+        FROM
+            product_image_tb
+        WHERE
+            product_id = #{productId}
+        ORDER BY
+            thumbnail DESC,
+            create_dt ASC,
+            product_image_id ASC;
+    </select>
+
     <insert id="addProductImageList">
         insert into
             product_image_tb

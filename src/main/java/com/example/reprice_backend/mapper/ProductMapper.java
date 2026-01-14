@@ -1,5 +1,6 @@
 package com.example.reprice_backend.mapper;
 
+import com.example.reprice_backend.dto.GetProductRespDto;
 import com.example.reprice_backend.dto.ProductListDto;
 import com.example.reprice_backend.entity.Product;
 import org.apache.ibatis.annotations.Mapper;
@@ -11,4 +12,5 @@ import java.util.List;
 public interface ProductMapper {
     int addProduct(Product product);
     List<ProductListDto> getProductList(int limit, LocalDateTime cursorCreateDt, Integer cursorProductId, String status, String keyword);
+    GetProductRespDto getProductByProductId(Integer productId);
 }

@@ -31,4 +31,9 @@ public class ProductController {
        return ResponseEntity.ok(productService.getProductList(limit, cursorCreateDt, cursorProductId, keyword, status));
     }
 
+    @GetMapping("/get/{productId}")
+    public ResponseEntity<?> getProductByProductId(@PathVariable Integer productId) {
+        return ResponseEntity.ok(productService.getProductByProductId(productId));
+    }
+
 }

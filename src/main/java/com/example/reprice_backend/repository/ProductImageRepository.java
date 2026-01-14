@@ -15,4 +15,8 @@ public class ProductImageRepository {
     public int addProductImageList(List<ProductImage> productImageList) {
         return productImageMapper.addProductImageList(productImageList);
     }
+
+    public List<ProductImage> getProductImageListByProductId(Integer productId) {
+        return productImageMapper.getProductImageListByProductId(productId);
+    }
 }

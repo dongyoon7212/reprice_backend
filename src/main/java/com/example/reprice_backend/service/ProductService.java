@@ -2,6 +2,7 @@ package com.example.reprice_backend.service;
 
 import com.example.reprice_backend.dto.*;
 import com.example.reprice_backend.entity.Product;
+import com.example.reprice_backend.entity.ProductImage;
 import com.example.reprice_backend.repository.ProductImageRepository;
 import com.example.reprice_backend.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,6 @@ public class ProductService {
 
     @Transactional(rollbackFor = Exception.class)
     public ApiRespDto<?> addProduct(AddProductReqDto addProductReqDto) {
-        System.out.println(addProductReqDto);
         Optional<Product> optionalProduct = productRepository.addProduct(addProductReqDto.toProductEntity());
         if (optionalProduct.isEmpty()) {
             return new ApiRespDto<>("failed", "물품을 추가하는데 실패했습니다. 다시 시도해주세요.", null);
@@ -53,6 +53,13 @@ public class ProductService {
         }
 
         return new ApiRespDto<>("success", "조회완료", new GetProductInfiniteRespDto(rows, hasNext, nextCursor));
+    }
+
+    public ApiRespDto<?> getProductByProductId(Integer productId) {
+        GetProductRespDto product = productRepository.getProductByProductId(productId);
+        List<ProductImage> productImageList = productImageRepository.getProductImageListByProductId(productId);
+
+        return new ApiRespDto<>("success", "조회를 완료하였습니다.", new GetProductWithProductImageRespDto(product, productImageList));
     }
 
 }

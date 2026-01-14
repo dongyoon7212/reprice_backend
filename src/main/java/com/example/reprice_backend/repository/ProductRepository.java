@@ -1,5 +1,6 @@
 package com.example.reprice_backend.repository;
 
+import com.example.reprice_backend.dto.GetProductRespDto;
 import com.example.reprice_backend.dto.ProductListDto;
 import com.example.reprice_backend.entity.Product;
 import com.example.reprice_backend.mapper.ProductMapper;
@@ -30,5 +31,9 @@ public class ProductRepository {
 
     public List<ProductListDto> getProductList(int limit, LocalDateTime cursorCreateDt, Integer cursorProductId, String status, String keyword) {
         return productMapper.getProductList(limit, cursorCreateDt,  cursorProductId, status, keyword);
+    }
+
+    public GetProductRespDto getProductByProductId(Integer productId) {
+        return productMapper.getProductByProductId(productId);
     }
 }

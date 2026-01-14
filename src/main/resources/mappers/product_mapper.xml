@@ -18,6 +18,21 @@
         <result property="updateDt" column="update_dt" />
     </resultMap>
 
+    <resultMap id="ProductRespResultMap" type="com.example.reprice_backend.dto.GetProductRespDto">
+        <id property="productId" column="product_id" />
+        <result property="sellerId" column="seller_id" />
+        <result property="title" column="title" />
+        <result property="description" column="description" />
+        <result property="category" column="category" />
+        <result property="price" column="price" />
+        <result property="conditionGrade" column="condition_grade" />
+        <result property="tradeType" column="tradeType" />
+        <result property="status" column="status" />
+        <result property="createDt" column="create_dt" />
+        <result property="updateDt" column="update_dt" />
+        <result property="displayName" column="display_name" />
+    </resultMap>
+
     <resultMap id="ProductListResultMap" type="com.example.reprice_backend.dto.ProductListDto">
         <id property="productId" column="product_id" />
         <result property="sellerId" column="seller_id" />
@@ -95,5 +110,17 @@
             pt.create_dt desc,
             pt.product_id desc
         limit #{limit};
+    </select>
+
+    <select id="getProductByProductId" resultMap="ProductRespResultMap">
+        SELECT
+            p.*,
+            u.display_name
+        FROM
+            product_tb p
+        JOIN
+            user_tb u ON u.user_id = p.seller_id
+        WHERE
+            p.product_id = #{productId};
     </select>
 </mapper>
