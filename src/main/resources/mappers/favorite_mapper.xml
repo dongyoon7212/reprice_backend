@@ -4,7 +4,33 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.reprice_backend.mapper.FavoriteMapper">
 
+    <resultMap id="FavoriteResultMap" type="com.example.reprice_backend.entity.Favorite">
+        <id property="favoriteId" column="favorite_id" />
+        <result property="userId" column="user_id" />
+        <result property="productId" column="product_id" />
+        <result property="createDt" column="create_dt" />
+    </resultMap>
 
+    <select id="getFavoriteByUserIdAndProductId" resultMap="FavoriteResultMap">
+        select
+            *
+        from
+            favorite_tb
+        where
+            user_id = #{userId} and product_id = #{productId};
+    </select>
 
+    <insert id="addFavorite">
+        insert ignore into
+            favorite_tb
+        values (0, #{userId}, #{productId}, now());
+    </insert>
+
+    <delete id="removeFavorite">
+        delete from
+            favorite_tb
+        where
+            product_id = #{productId} AND user_id = #{userId};
+    </delete>
 
 </mapper>
