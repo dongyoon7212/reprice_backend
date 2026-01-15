@@ -7,8 +7,8 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class GetProductInfiniteRespDto {
-    private List<ProductListDto> items;
+public class InfiniteRespDto<T> {
+    private List<T> items;
     private boolean hasNext;
-    private ProductCursorDto nextCursor;
+    private Object nextCursor;
 }

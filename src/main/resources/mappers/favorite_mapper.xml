@@ -11,6 +11,19 @@
         <result property="createDt" column="create_dt" />
     </resultMap>
 
+    <resultMap id="FavoriteProductResultMap" type="com.example.reprice_backend.dto.FavoriteProductDto">
+        <id property="productId" column="product_id" />
+        <result property="title" column="title" />
+        <result property="price" column="price" />
+        <result property="status" column="status" />
+        <result property="category" column="category" />
+        <result property="conditionGrade" column="condition_grade" />
+        <result property="tradeType" column="trade_type" />
+        <result property="createDt" column="create_dt" />
+        <result property="thumbnail" column="thumbnail" />
+        <result property="favoriteDt" column="favorite_dt" />
+    </resultMap>
+
     <select id="getFavoriteByUserIdAndProductId" resultMap="FavoriteResultMap">
         select
             *
@@ -33,4 +46,71 @@
             product_id = #{productId} AND user_id = #{userId};
     </delete>
 
+    <select id="getFavoriteProductInfinite" resultMap="FavoriteProductResultMap">
+        select
+            pt.product_id,
+            pt.title,
+            pt.price,
+            pt.status,
+            pt.category,
+            pt.condition_grade,
+            pt.trade_type,
+            pt.create_dt,
+            pit.image_url as thumbnail,
+            ft.create_dt as favorite_dt
+        from
+            favorite_tb ft
+        join
+            product_tb pt on pt.product_id = ft.product_id
+        left join (
+            select
+                product_id,
+                image_url
+            from
+            (
+                select
+                    product_id,
+                    image_url,
+                    ROW_NUMBER() over
+                            (
+                                partition by product_id
+                                order by
+                                    thumbnail desc,
+                                    create_dt asc,
+                                    product_image_id asc
+                            ) rn
+                from product_image_tb
+            ) t
+            where rn = 1
+        )pit on pit.product_id = pt.product_id
+        where
+            ft.user_id = #{userId} and
+            (#{cursorProductId} is null or
+            ft.create_dt <![CDATA[ < ]]> #{cursorFavoriteDt} or
+                (ft.create_dt = #{cursorFavoriteDt} and ft.product_id <![CDATA[ < ]]> #{cursorProductId})
+            )
+        order by
+            ft.create_dt desc,
+            ft.product_id desc
+        limit #{limit};
+    </select>
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

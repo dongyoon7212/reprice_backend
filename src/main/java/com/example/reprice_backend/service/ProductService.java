@@ -52,7 +52,7 @@ public class ProductService {
             nextCursor = new ProductCursorDto(last.getProductId(), last.getCreateDt());
         }
 
-        return new ApiRespDto<>("success", "조회완료", new GetProductInfiniteRespDto(rows, hasNext, nextCursor));
+        return new ApiRespDto<>("success", "조회완료", new InfiniteRespDto<>(rows, hasNext, nextCursor));
     }
 
     public ApiRespDto<?> getProductByProductId(Integer productId) {

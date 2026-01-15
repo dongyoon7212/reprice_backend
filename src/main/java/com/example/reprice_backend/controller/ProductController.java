@@ -22,7 +22,7 @@ public class ProductController {
 
     @GetMapping("/get/infinite")
     public ResponseEntity<?> getProductList(
-            @RequestParam(defaultValue = "9") int limit,
+            @RequestParam(defaultValue = "8") int limit,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime cursorCreateDt,
             @RequestParam(required = false) Integer cursorProductId,
             @RequestParam(required = false) String keyword,
