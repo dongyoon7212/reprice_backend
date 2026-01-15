@@ -15,5 +15,5 @@ public class Favorite {
     private Integer favoriteId;
     private Integer userId;
     private Integer productId;
-    private LocalDateTime createDT;
+    private LocalDateTime createDt;
 }

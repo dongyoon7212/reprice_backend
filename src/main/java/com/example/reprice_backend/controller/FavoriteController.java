@@ -1,5 +1,6 @@
 package com.example.reprice_backend.controller;
 
+import com.example.reprice_backend.dto.AddFavoriteReqDto;
 import com.example.reprice_backend.service.FavoriteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +17,13 @@ public class FavoriteController {
         return ResponseEntity.ok(favoriteService.getFavoriteByUserIdAndProductId(userId, productId));
     }
 
-    @GetMapping("/add")
-    public ResponseEntity<?> addFavorite(@RequestParam Integer userId, @RequestParam Integer productId) {
-        return ResponseEntity.ok(favoriteService.addFavorite(userId, productId));
+    @PostMapping("/add")
+    public ResponseEntity<?> addFavorite(@RequestBody AddFavoriteReqDto addFavoriteReqDto) {
+        return ResponseEntity.ok(favoriteService.addFavorite(addFavoriteReqDto));
     }
 
     @DeleteMapping("/remove")
     public ResponseEntity<?> removeFavorite(@RequestParam Integer userId, @RequestParam Integer productId) {
-        return ResponseEntity.ok(favoriteService.deleteFavorite(userId, productId));
+        return ResponseEntity.ok(favoriteService.removeFavorite(userId, productId));
     }
 }

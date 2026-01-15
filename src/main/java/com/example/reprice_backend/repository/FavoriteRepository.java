@@ -20,7 +20,7 @@ public class FavoriteRepository {
         return favoriteMapper.addFavorite(userId, productId);
     }
 
-    public int deleteFavorite(Integer userId, Integer productId) {
-        return favoriteMapper.deleteFavorite(userId, productId);
+    public int removeFavorite(Integer userId, Integer productId) {
+        return favoriteMapper.removeFavorite(userId, productId);
     }
 }

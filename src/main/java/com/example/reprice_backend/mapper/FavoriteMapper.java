@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface FavoriteMapper {
     Optional<Favorite> getFavoriteByUserIdAndProductId(Integer userId, Integer productId);
     int addFavorite(Integer userId, Integer productId);
-    int deleteFavorite(Integer userId, Integer productId);
+    int removeFavorite(Integer userId, Integer productId);
 }
