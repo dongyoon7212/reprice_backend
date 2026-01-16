@@ -33,9 +33,9 @@
             chat_message_tb
         where
             chat_room_id = #{chatRoomId}
-            <if test="cursorMessageId != null">
-                and chat_message_id <![CDATA[ < ]]> #{cursorMessageId}
-            </if>
+                <if test="cursorMessageId != null">
+                    and chat_message_id <![CDATA[ < ]]> #{cursorMessageId}
+                </if>
         order by
             chat_message_id desc
         limit #{limit};

@@ -1,6 +1,10 @@
 package com.example.reprice_backend.service;
 
-import com.example.reprice_backend.dto.*;
+import com.example.reprice_backend.dto.ApiRespDto;
+import com.example.reprice_backend.dto.chat.ChatMessageRespDto;
+import com.example.reprice_backend.dto.chat.ChatReadUpdateReqDto;
+import com.example.reprice_backend.dto.chat.ChatSendRequestDto;
+import com.example.reprice_backend.dto.chat.CreateChatRoomReqDto;
 import com.example.reprice_backend.entity.ChatMessage;
 import com.example.reprice_backend.entity.ChatReadStatus;
 import com.example.reprice_backend.entity.ChatRoom;

@@ -1,7 +1,7 @@
 package com.example.reprice_backend.controller;
 
 import com.example.reprice_backend.dto.ApiRespDto;
-import com.example.reprice_backend.dto.CreateChatRoomReqDto;
+import com.example.reprice_backend.dto.chat.CreateChatRoomReqDto;
 import com.example.reprice_backend.entity.ChatMessage;
 import com.example.reprice_backend.entity.ChatRoom;
 import com.example.reprice_backend.service.ChatService;

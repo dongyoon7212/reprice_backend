@@ -1,8 +1,8 @@
 package com.example.reprice_backend.controller;
 
-import com.example.reprice_backend.dto.ChatMessageRespDto;
-import com.example.reprice_backend.dto.ChatReadUpdateReqDto;
-import com.example.reprice_backend.dto.ChatSendRequestDto;
+import com.example.reprice_backend.dto.chat.ChatMessageRespDto;
+import com.example.reprice_backend.dto.chat.ChatReadUpdateReqDto;
+import com.example.reprice_backend.dto.chat.ChatSendRequestDto;
 import com.example.reprice_backend.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
