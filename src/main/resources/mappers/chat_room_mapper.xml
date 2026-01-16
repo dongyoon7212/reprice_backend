@@ -14,6 +14,21 @@
         <result property="createDt" column="create_dt" />
     </resultMap>
 
+    <resultMap id="ChatRoomListRespResultMap" type="com.example.reprice_backend.dto.chat.ChatRoomListRespDto">
+        <id property="chatRoomId" column="chat_room_id" />
+        <result property="productId" column="product_id" />
+        <result property="title" column="title" />
+        <result property="imageUrl" column="image_url" />
+        <result property="sellerId" column="seller_id" />
+        <result property="sellerDisplayName" column="seller_display_name" />
+        <result property="buyerId" column="buyer_id" />
+        <result property="buyerDisplayName" column="buyer_display_name" />
+        <result property="status" column="status" />
+        <result property="lastMessageContent" column="last_message_content" />
+        <result property="lastMessageDt" column="last_message_dt" />
+        <result property="createDt" column="create_dt" />
+    </resultMap>
+
     <insert id="addChatRoom" useGeneratedKeys="true" keyProperty="chatRoomId">
         insert into
             chat_room_tb
@@ -48,11 +63,15 @@
             and buyer_id = #{buyerId};
     </select>
 
-    <select id="getChatRoomsByUserId" resultMap="ChatRoomResultMap">
+    <select id="getChatRoomsByUserId" resultMap="ChatRoomListRespResultMap">
         select
             *
         from
-            chat_room_tb
+            chat_room_tb crt
+        join
+            product_tb pt on (crt.product_id = pt.product_id)
+            user_tb ut on (crt.user_id = ut.user_id)
+            chat_message_tb cmt on (crt.chat_room_id = cmt.chat_room_id)
         where
             seller_id = #{userId}
             or buyer_id = #{userId}
