@@ -1,0 +1,13 @@
+package com.example.reprice_backend.mapper;
+
+import com.example.reprice_backend.entity.ChatRoom;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface ChatRoomMapper {
+    int addChatRoom(ChatRoom chatRoom);
+    ChatRoom getChatRoomById(Integer chatRoomId);
+    ChatRoom getChatRoomByParticipants(Integer productId, Integer sellerId, Integer buyerId);
+    java.util.List<ChatRoom> getChatRoomsByUserId(Integer userId);
+    int updateLastMessageDt(Integer chatRoomId);
+}

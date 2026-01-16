@@ -17,6 +17,6 @@ public class ChatRoom {
     private Integer sellerId;
     private Integer buyerId;
     private String status;
-    private String lastMessageAt;
+    private LocalDateTime lastMessageDt;
     private LocalDateTime createDt;
 }

@@ -58,7 +58,8 @@ public class SecurityConfig {
                     "/auth/**",
                     "/login/oauth2/**",
                     "/oauth2/**",
-                    "/product/get/**"
+                    "/product/get/**",
+                    "/ws/**"
             ).permitAll();
             auth.anyRequest().authenticated();
         });
