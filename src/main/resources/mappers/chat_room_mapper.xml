@@ -48,6 +48,18 @@
             and buyer_id = #{buyerId};
     </select>
 
+    <select id="getChatRoomsByUserId" resultMap="ChatRoomResultMap">
+        select
+            *
+        from
+            chat_room_tb
+        where
+            seller_id = #{userId}
+            or buyer_id = #{userId}
+        order by
+            last_message_dt desc;
+    </select>
+
     <update id="updateLastMessageDt">
         update
             chat_room_tb

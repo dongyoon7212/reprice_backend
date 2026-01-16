@@ -32,6 +32,10 @@ public class ChatRoomRepository {
         return chatRoomMapper.getChatRoomByParticipants(productId, sellerId, buyerId);
     }
 
+    public java.util.List<ChatRoom> getChatRoomsByUserId(Integer userId) {
+        return chatRoomMapper.getChatRoomsByUserId(userId);
+    }
+
     public boolean updateLastMessageDt(Integer chatRoomId) {
         return chatRoomMapper.updateLastMessageDt(chatRoomId) == 1;
     }

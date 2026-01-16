@@ -59,6 +59,11 @@ public class ChatService {
         return new ApiRespDto<>("success", "조회완료", messages);
     }
 
+    public ApiRespDto<List<ChatRoom>> getRoomsByUser(Integer userId) {
+        List<ChatRoom> rooms = chatRoomRepository.getChatRoomsByUserId(userId);
+        return new ApiRespDto<>("success", "조회완료", rooms);
+    }
+
     @Transactional(rollbackFor = Exception.class)
     public Optional<ChatMessageRespDto> saveMessage(ChatSendRequestDto reqDto) {
         LocalDateTime now = LocalDateTime.now();

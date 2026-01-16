@@ -29,4 +29,9 @@ public class ChatController {
     ) {
         return chatService.getMessages(chatRoomId, limit, cursorMessageId);
     }
+
+    @GetMapping("/rooms")
+    public ApiRespDto<List<ChatRoom>> getRoomsByUser(@RequestParam Integer userId) {
+        return chatService.getRoomsByUser(userId);
+    }
 }
